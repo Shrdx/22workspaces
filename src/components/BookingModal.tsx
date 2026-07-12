@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { useBooking } from "./BookingProvider";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, type Variants } from "framer-motion";
 import { 
   X, MapPin, Briefcase, User, Mail, Phone, ArrowRight, CheckCircle2, ChevronDown, Loader2 
 } from "lucide-react";
@@ -145,7 +145,7 @@ export default function BookingModal() {
   ];
 
   // Animation variants
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
@@ -153,7 +153,7 @@ export default function BookingModal() {
     }
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 10 },
     show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 300, damping: 24 } }
   };

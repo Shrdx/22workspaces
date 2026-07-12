@@ -1,0 +1,287 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: 'Zodiak';
+  src: url('/Zodiak_Complete/Fonts/WEB/fonts/Zodiak-Variable.woff2') format('woff2'),
+       url('/Zodiak_Complete/Fonts/WEB/fonts/Zodiak-Variable.woff') format('woff');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Zodiak';
+  src: url('/Zodiak_Complete/Fonts/WEB/fonts/Zodiak-VariableItalic.woff2') format('woff2'),
+       url('/Zodiak_Complete/Fonts/WEB/fonts/Zodiak-VariableItalic.woff') format('woff');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Recia';
+  src: url('/Recia_Complete/Fonts/WEB/fonts/Recia-Variable.woff2') format('woff2'),
+       url('/Recia_Complete/Fonts/WEB/fonts/Recia-Variable.woff') format('woff');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Recia';
+  src: url('/Recia_Complete/Fonts/WEB/fonts/Recia-VariableItalic.woff2') format('woff2'),
+       url('/Recia_Complete/Fonts/WEB/fonts/Recia-VariableItalic.woff') format('woff');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Satoshi';
+  src: url('/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Variable.woff2') format('woff2'),
+       url('/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Variable.woff') format('woff');
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Satoshi';
+  src: url('/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-VariableItalic.woff2') format('woff2'),
+       url('/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-VariableItalic.woff') format('woff');
+  font-weight: 300 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'GeneralSans';
+  src: url('/GeneralSans_Complete/Fonts/WEB/fonts/GeneralSans-Variable.woff2') format('woff2'),
+       url('/GeneralSans_Complete/Fonts/WEB/fonts/GeneralSans-Variable.woff') format('woff');
+  font-weight: 200 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'GeneralSans';
+  src: url('/GeneralSans_Complete/Fonts/WEB/fonts/GeneralSans-VariableItalic.woff2') format('woff2'),
+       url('/GeneralSans_Complete/Fonts/WEB/fonts/GeneralSans-VariableItalic.woff') format('woff');
+  font-weight: 200 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Sora';
+  src: url('/Sora_Complete/Fonts/WEB/fonts/Sora-Variable.woff2') format('woff2'),
+       url('/Sora_Complete/Fonts/WEB/fonts/Sora-Variable.woff') format('woff');
+  font-weight: 100 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+@font-face {
+  font-family: 'Geist';
+  src: url('/geist-font/Geist/webfonts/Geist[wght].woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --color-brand-orange: #ff6a00;
+  --color-brand-orange-hover: #e55f00;
+  --color-brand-orange-light: #ff8533;
+  --color-brand-orange-dark: #b34a00;
+  --color-space-grey: #f4f4f6;
+  --color-space-dark: #eaeaea;
+  --color-space-black: #ffffff;
+  --color-space-light: #faf9f6; /* Soft premium warm white */
+  --color-space-silver: #707075;
+  
+  --font-serif: 'Zodiak', var(--font-cormorant), Georgia, serif;
+  --font-sans: 'Satoshi', var(--font-jakarta), Arial, sans-serif;
+  --font-satoshi: 'Satoshi', Arial, sans-serif;
+  --font-recia: 'Recia', serif;
+  
+  --animate-fade-in-up: fade-in-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  --animate-blur-in: blur-in 0.6s ease forwards;
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes blur-in {
+  from {
+    filter: blur(10px);
+    opacity: 0;
+  }
+  to {
+    filter: blur(0);
+    opacity: 1;
+  }
+}
+
+@keyframes sparkle-twinkle {
+  0%   { opacity: 0; transform: scale(0.3) rotate(0deg); }
+  30%  { opacity: 1; transform: scale(1.1) rotate(60deg); }
+  70%  { opacity: 0.85; transform: scale(0.9) rotate(120deg); }
+  100% { opacity: 0; transform: scale(0.2) rotate(180deg); }
+}
+
+@keyframes sparkle-float {
+  0%   { opacity: 0; transform: translateY(0px) scale(0.5); }
+  25%  { opacity: 1; transform: translateY(-10px) scale(1); }
+  75%  { opacity: 0.6; transform: translateY(-22px) scale(0.85); }
+  100% { opacity: 0; transform: translateY(-34px) scale(0.3); }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+:root {
+  --navbar-h: 96px;
+  --background: #faf9f6; /* Soft linen / warm white */
+  --foreground: #1c1d1f; /* Premium dark slate */
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6, .font-serif {
+  font-family: var(--font-serif);
+}
+
+p, li, span, a, select, button {
+  font-family: var(--font-sans);
+}
+
+/* Light Glassmorphism Utilities */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.glass-panel-dark {
+  background: rgba(28, 29, 31, 0.95); /* Dark dialog for contrast */
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-panel-light {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.glass-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.4) 100%);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.02);
+}
+
+.glass-card:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.6) 100%);
+  border-color: rgba(255, 106, 0, 0.3);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+}
+
+/* Custom premium styling */
+.text-stroke-white {
+  -webkit-text-stroke: 1px rgba(28, 29, 31, 0.2);
+  color: transparent;
+}
+
+.text-stroke-orange {
+  -webkit-text-stroke: 1px rgba(255, 106, 0, 0.4);
+  color: transparent;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f4f4f6;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d1d1d6;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-brand-orange);
+}
+
+/* Hide scrollbar utility (for carousel) */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Flip card */
+.flip-card {
+  perspective: 1000px;
+}
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  min-height: 140px;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-style: preserve-3d;
+}
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg) scale(1.05);
+  box-shadow: 0 24px 48px rgba(0,0,0,0.12);
+}
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.flip-card-back {
+  transform: rotateY(180deg);
+}

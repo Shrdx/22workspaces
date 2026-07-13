@@ -27,14 +27,14 @@ export default function ContactPage() {
     <div className="min-h-screen pt-32 pb-20 bg-space-light">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <motion.span 
+          <motion.span
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             className="text-brand-orange text-xs font-semibold uppercase tracking-widest block mb-4"
           >
             Get In Touch
           </motion.span>
-          <motion.h1 
+          <motion.h1
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
@@ -42,7 +42,7 @@ export default function ContactPage() {
           >
             Contact Us
           </motion.h1>
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
@@ -54,7 +54,7 @@ export default function ContactPage() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24">
           {/* Contact Information */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.3 }}
@@ -121,14 +121,14 @@ export default function ContactPage() {
           </motion.div>
 
           {/* Contact Form */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.4 }}
             className="bg-white rounded-3xl p-8 md:p-10 shadow-sm border border-black/5"
           >
             <h3 className="text-2xl font-bold text-zinc-900 mb-8">Send us a message</h3>
-            
+
             {status === 'success' ? (
               <div className="flex flex-col items-center justify-center py-12 text-center">
                 <div className="w-16 h-16 rounded-full bg-brand-orange/20 flex items-center justify-center mb-6">
@@ -142,55 +142,55 @@ export default function ContactPage() {
                 <div className="space-y-4">
                   <div>
                     <label className="block text-xs font-semibold text-zinc-700 uppercase tracking-wider mb-2">Full Name</label>
-                    <input 
-                      type="text" 
+                    <input
+                      type="text"
                       required
-                      placeholder="John Doe"
+                      placeholder="Enter your name"
                       className="w-full h-12 px-4 rounded-xl border border-zinc-200 bg-zinc-50 focus:bg-white focus:outline-none focus:border-brand-orange focus:ring-1 focus:ring-brand-orange transition-colors"
                       value={formData.name}
-                      onChange={(e) => setFormData({...formData, name: e.target.value})}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     />
                   </div>
-                  
+
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-xs font-semibold text-zinc-700 uppercase tracking-wider mb-2">Email</label>
-                      <input 
-                        type="email" 
+                      <input
+                        type="email"
                         required
-                        placeholder="john@example.com"
+                        placeholder="Enter your email"
                         className="w-full h-12 px-4 rounded-xl border border-zinc-200 bg-zinc-50 focus:bg-white focus:outline-none focus:border-brand-orange focus:ring-1 focus:ring-brand-orange transition-colors"
                         value={formData.email}
-                        onChange={(e) => setFormData({...formData, email: e.target.value})}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       />
                     </div>
                     <div>
                       <label className="block text-xs font-semibold text-zinc-700 uppercase tracking-wider mb-2">Phone</label>
-                      <input 
-                        type="tel" 
+                      <input
+                        type="tel"
                         required
-                        placeholder="+91 99999 99999"
+                        placeholder="Enter your phone no."
                         className="w-full h-12 px-4 rounded-xl border border-zinc-200 bg-zinc-50 focus:bg-white focus:outline-none focus:border-brand-orange focus:ring-1 focus:ring-brand-orange transition-colors"
                         value={formData.phone}
-                        onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       />
                     </div>
                   </div>
 
                   <div>
                     <label className="block text-xs font-semibold text-zinc-700 uppercase tracking-wider mb-2">Message</label>
-                    <textarea 
+                    <textarea
                       required
                       rows={4}
                       placeholder="How can we help you?"
                       className="w-full px-4 py-3 rounded-xl border border-zinc-200 bg-zinc-50 focus:bg-white focus:outline-none focus:border-brand-orange focus:ring-1 focus:ring-brand-orange transition-colors resize-none"
                       value={formData.message}
-                      onChange={(e) => setFormData({...formData, message: e.target.value})}
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     />
                   </div>
                 </div>
 
-                <button 
+                <button
                   type="submit"
                   disabled={status === 'loading'}
                   className="w-full h-12 flex items-center justify-center gap-2 bg-brand-orange hover:bg-brand-orange-hover text-white rounded-xl font-semibold transition-all disabled:opacity-70"

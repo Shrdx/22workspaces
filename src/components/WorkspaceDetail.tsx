@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import localFont from "next/font/local";
 import { useBooking } from "@/components/BookingProvider";
 
@@ -16,11 +16,21 @@ export interface Specification {
   items: string[];
 }
 
-interface WorkspaceDetailProps {
+export interface Benefit {
   title: string;
-  headline: string;
+  description: string;
+  image?: string;
+}
+
+export interface WorkspaceDetailProps {
+  title: string;
+  categoryName: string;
+  valueProposition: string;
   price: string;
   narrative: React.ReactNode;
+  atAGlance: { label: string; value: string }[];
+  benefits: Benefit[];
+  whoItIsFor: React.ReactNode;
   specifications: Specification[];
   mainImage: string;
   galleryImages: string[];
@@ -28,14 +38,18 @@ interface WorkspaceDetailProps {
 }
 
 export function WorkspaceDetail({
-  title, 
-  headline, 
-  price, 
-  narrative, 
-  specifications, 
-  mainImage, 
-  galleryImages, 
-  bookingType
+  title,
+  categoryName,
+  valueProposition,
+  price,
+  narrative,
+  atAGlance,
+  benefits,
+  whoItIsFor,
+  specifications,
+  mainImage,
+  galleryImages,
+  bookingType,
 }: WorkspaceDetailProps) {
   const { openBooking } = useBooking();
   const [lightboxOpen, setLightboxOpen] = useState(false);
@@ -76,227 +90,216 @@ export function WorkspaceDetail({
   }, [lightboxOpen, allImages.length]);
 
   return (
-    <div className={`w-full bg-[#fcfcfc] text-zinc-900 min-h-screen ${geist.className}`}>
+    <div className={`w-full bg-[#fbfaf8] text-zinc-900 min-h-screen ${geist.className}`}>
       
-      {/* 1. 100vh Immersive Hero */}
-      <section className="relative w-full h-[100svh] min-h-[600px] bg-zinc-950 flex flex-col justify-end">
+      {/* 1. Hero Section */}
+      <section className="relative w-full h-[85svh] min-h-[550px] bg-zinc-950 flex flex-col justify-end">
         <div 
-          className="absolute inset-0 bg-cover bg-center transition-transform duration-[3s] ease-out hover:scale-[1.02]"
+          className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url('${mainImage}')` }}
         />
-        {/* Very subtle gradient just for text readability at the bottom */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10" />
         
-        {/* Navigation Breadcrumb (Integrated seamlessly) */}
-        <div className="absolute top-8 left-6 md:left-12 z-20 flex items-center gap-3 text-[10px] md:text-xs tracking-[0.2em] uppercase font-medium text-white/80">
-          <Link href="/" className="hover:text-white transition-colors">Home</Link>
-          <span className="opacity-50">—</span>
-          <Link href="/#workspaces" className="hover:text-white transition-colors">Workspaces</Link>
-          <span className="opacity-50">—</span>
+        {/* Breadcrumb */}
+        <div className="absolute top-8 left-4 md:left-8 z-20 flex items-center gap-2 text-[10px] md:text-xs tracking-[0.15em] uppercase font-medium text-white/90">
+          <Link href="/" className="hover:text-[#ff5a36] transition-colors">Home</Link>
+          <span className="opacity-40">/</span>
+          <Link href="/#workspaces" className="hover:text-[#ff5a36] transition-colors">Workspaces</Link>
+          <span className="opacity-40">/</span>
           <span className="text-white">{title}</span>
         </div>
 
-        <div className="relative z-10 px-6 md:px-12 pb-16 md:pb-24 w-full flex flex-col md:flex-row md:items-end justify-between gap-8">
-          <div className="max-w-4xl">
-            <motion.h1 
-              className="text-5xl md:text-7xl lg:text-[6rem] text-white tracking-tighter leading-[0.95]"
-              initial={{ opacity: 0, y: 40 }}
+        <div className="relative z-10 px-4 md:px-8 pb-12 w-full max-w-[1400px] mx-auto flex flex-col md:flex-row md:items-end justify-between gap-8">
+          <div className="max-w-3xl">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-              style={{ fontWeight: 400 }}
+              transition={{ duration: 0.6 }}
             >
-              {title}
-            </motion.h1>
+              <span className="block text-[#ff5a36] text-sm md:text-base font-medium tracking-widest uppercase mb-3 md:mb-4">
+                {categoryName}
+              </span>
+              <h1 className="text-4xl md:text-6xl lg:text-7xl text-white tracking-tight leading-[1.05] font-medium mb-4">
+                {title}
+              </h1>
+              <p className="text-lg md:text-xl text-white/90 font-light leading-relaxed max-w-2xl text-justify">
+                {valueProposition}
+              </p>
+            </motion.div>
           </div>
           <motion.div 
-            className="flex flex-col items-start md:items-end text-white/80"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.5 }}
+            className="flex flex-col items-start md:items-end text-white"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <p className="text-lg md:text-xl font-light tracking-tight">{price}</p>
+            <div className="text-2xl md:text-3xl font-medium tracking-tight mb-4">{price}</div>
             <button 
-              onClick={() => openLightbox(0)}
-              className="mt-4 text-xs uppercase tracking-[0.15em] border-b border-white/30 hover:border-white pb-1 transition-colors flex items-center gap-2"
+              onClick={() => openBooking(bookingType)}
+              className="bg-[#ff5a36] hover:bg-[#e04a29] text-white px-8 py-3 text-sm font-medium tracking-widest uppercase transition-colors"
             >
-              View Gallery
+              Book a Tour
             </button>
           </motion.div>
         </div>
       </section>
 
-      {/* 2. The Narrative (Introduction) */}
-      <section className="px-6 md:px-12 py-32 md:py-48 max-w-[1400px] mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 md:gap-24">
-          <div className="lg:col-span-5">
-            <motion.h2 
-              className="text-4xl md:text-5xl lg:text-6xl tracking-tight leading-[1.1] text-zinc-900"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              style={{ fontWeight: 300 }}
-            >
-              {headline}
-            </motion.h2>
-          </div>
-          <div className="lg:col-span-6 lg:col-start-7 lg:mt-32">
+      {/* 2. Introduction & At a Glance */}
+      <section className="px-4 md:px-8 py-16 md:py-24 max-w-[1400px] mx-auto border-b border-zinc-200">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 md:gap-16 items-start">
+          <div className="lg:col-span-7">
             <motion.div 
-              className="text-xl md:text-2xl text-zinc-600 font-light leading-[1.6]"
-              initial={{ opacity: 0, y: 30 }}
+              className="text-xl text-zinc-700 leading-relaxed font-light max-w-none text-justify"
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.6 }}
             >
               {narrative}
             </motion.div>
           </div>
+          <div className="lg:col-span-4 lg:col-start-9">
+            <motion.div 
+              className="bg-white p-8 border border-zinc-200 shadow-sm"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+            >
+              <h3 className="text-xs uppercase tracking-widest text-zinc-400 font-medium mb-6">At a Glance</h3>
+              <dl className="flex flex-col gap-4">
+                {atAGlance.map((fact, idx) => (
+                  <div key={idx} className="flex justify-between items-center pb-4 border-b border-zinc-100 last:border-0 last:pb-0">
+                    <dt className="text-sm font-medium text-zinc-900">{fact.label}</dt>
+                    <dd className="text-sm text-zinc-500 text-right">{fact.value}</dd>
+                  </div>
+                ))}
+              </dl>
+            </motion.div>
+          </div>
         </div>
       </section>
 
-      {/* 3. Editorial Image Composition */}
-      {galleryImages.length >= 2 && (
-        <section className="pb-32 md:pb-48 px-4 md:px-12 max-w-[1600px] mx-auto overflow-hidden">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-center">
-            {/* First Image - Large */}
+      {/* 3. Designed Around Your Workday (Benefits) */}
+      <section className="px-4 md:px-8 py-16 md:py-24 max-w-[1400px] mx-auto">
+        <motion.div 
+          className="mb-12 md:mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <h2 className="text-2xl md:text-3xl text-zinc-900 tracking-tight font-medium">
+            Designed Around Your Workday
+          </h2>
+        </motion.div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16">
+          {benefits.map((benefit, idx) => (
             <motion.div 
-              className="md:col-span-8 cursor-pointer group"
-              onClick={() => openLightbox(1)}
-              initial={{ opacity: 0, scale: 0.98 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            >
-              <div className="relative h-[50vh] md:h-[80vh] w-full overflow-hidden bg-zinc-100">
-                <div 
-                  className="absolute inset-0 bg-cover bg-center transition-transform duration-[2s] group-hover:scale-105"
-                  style={{ backgroundImage: `url('${galleryImages[0]}')` }}
-                />
-              </div>
-            </motion.div>
-            
-            {/* Second Image - Offset */}
-            <motion.div 
-              className="md:col-span-4 mt-8 md:mt-[30vh] cursor-pointer group"
-              onClick={() => openLightbox(2)}
-              initial={{ opacity: 0, y: 50 }}
+              key={idx}
+              className="flex flex-col"
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.6, delay: idx * 0.1 }}
             >
-              <div className="relative h-[40vh] md:h-[60vh] w-full overflow-hidden bg-zinc-100">
-                <div 
-                  className="absolute inset-0 bg-cover bg-center transition-transform duration-[2s] group-hover:scale-105"
-                  style={{ backgroundImage: `url('${galleryImages[1]}')` }}
-                />
+              {benefit.image && (
+                <div className="w-full aspect-[16/9] mb-6 bg-zinc-100 overflow-hidden">
+                  <img src={benefit.image} alt={benefit.title} className="w-full h-full object-cover" />
+                </div>
+              )}
+              <h3 className="text-xl font-medium text-zinc-900 mb-3">{benefit.title}</h3>
+              <p className="text-zinc-600 leading-relaxed text-justify">{benefit.description}</p>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+
+
+      {/* 5. Who This Is For & Specifications Split */}
+      <section className="px-4 md:px-8 py-16 md:py-24 max-w-[1400px] mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
+          
+          {/* Who This Is For */}
+          <div className="lg:col-span-4">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="sticky top-24"
+            >
+              <h2 className="text-2xl font-medium text-zinc-900 mb-6">Who This Is For</h2>
+              <div className="text-lg text-zinc-600 leading-relaxed text-justify">
+                {whoItIsFor}
               </div>
-              <p className="text-xs uppercase tracking-widest text-zinc-400 mt-6 md:mt-8 ml-2">Click to expand</p>
             </motion.div>
           </div>
 
-          {/* Optional Third Image Full Bleed */}
-          {galleryImages.length > 2 && (
-             <motion.div 
-             className="w-full mt-24 md:mt-48 cursor-pointer group"
-             onClick={() => openLightbox(3)}
-             initial={{ opacity: 0 }}
-             whileInView={{ opacity: 1 }}
-             viewport={{ once: true }}
-             transition={{ duration: 1 }}
-           >
-             <div className="relative h-[50vh] md:h-[70vh] w-full overflow-hidden bg-zinc-100">
-               <div 
-                 className="absolute inset-0 bg-cover bg-center transition-transform duration-[2s] group-hover:scale-105"
-                 style={{ backgroundImage: `url('${galleryImages[2]}')` }}
-               />
-             </div>
-           </motion.div>
-          )}
-        </section>
-      )}
+          {/* Specifications */}
+          <div className="lg:col-span-8">
+             <motion.h2 
+              className="text-2xl font-medium text-zinc-900 mb-8"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              Specifications
+            </motion.h2>
+            <div className="flex flex-col">
+              {specifications.map((specGroup, idx) => (
+                <motion.div 
+                  key={idx}
+                  className="py-6 border-t border-zinc-200 first:border-t-0 first:pt-0"
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: idx * 0.1 }}
+                >
+                  <h4 className="text-sm font-medium text-zinc-900 mb-4 uppercase tracking-widest">
+                    {specGroup.category}
+                  </h4>
+                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3">
+                    {specGroup.items.map((item, j) => (
+                      <li key={j} className="text-sm text-zinc-600 flex items-start gap-2">
+                        <span className="text-[#ff5a36] mt-1">•</span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
 
-      {/* 4. Specifications (Typographic Index) */}
-      <section className="px-6 md:px-12 py-32 md:py-40 bg-white border-t border-zinc-100">
-        <div className="max-w-[1400px] mx-auto">
-          <motion.div 
-            className="mb-20 md:mb-32"
+
+
+      {/* 7. Compact High-Conversion CTA */}
+      <section className="bg-zinc-900 text-white px-4 md:px-8 py-20">
+        <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left">
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
           >
-            <h3 className="text-3xl md:text-4xl text-zinc-900 tracking-tight" style={{ fontWeight: 400 }}>
-              Specifications
-            </h3>
+            <h2 className="text-3xl md:text-4xl font-medium mb-2">Secure your {title.toLowerCase()}.</h2>
+            <p className="text-zinc-400 text-lg text-justify">Starting from {price}. Experience it yourself.</p>
           </motion.div>
-
-          <div className="flex flex-col w-full">
-            {specifications.map((specGroup, idx) => (
-              <motion.div 
-                key={idx}
-                className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 py-10 md:py-16 border-t border-zinc-200"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.6, delay: idx * 0.1 }}
-              >
-                <div className="md:col-span-4">
-                  <h4 className="text-sm uppercase tracking-[0.2em] font-medium text-zinc-400">
-                    {specGroup.category}
-                  </h4>
-                </div>
-                <div className="md:col-span-8">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-6">
-                    {specGroup.items.map((item, j) => (
-                      <div key={j} className="text-lg md:text-xl font-light text-zinc-800 tracking-tight">
-                        {item}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-            <div className="border-t border-zinc-200" />
-          </div>
-        </div>
-      </section>
-
-      {/* 5. The Conclusion (Immersive CTA) */}
-      <section className="relative h-[80vh] min-h-[600px] w-full bg-zinc-950 flex items-center justify-center overflow-hidden">
-        {/* Optional abstract background or extremely blurred image for depth */}
-        <div className="absolute inset-0 opacity-20 pointer-events-none mix-blend-screen" style={{
-          backgroundImage: `radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1) 0%, transparent 70%)`
-        }} />
-        
-        <div className="relative z-10 text-center px-6 max-w-4xl">
-          <motion.h2 
-            className="text-4xl md:text-6xl lg:text-7xl text-white tracking-tighter leading-[1.05] mb-16"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            style={{ fontWeight: 300 }}
-          >
-            Ready to secure your space?
-          </motion.h2>
-          
           <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+             initial={{ opacity: 0, y: 20 }}
+             whileInView={{ opacity: 1, y: 0 }}
+             viewport={{ once: true }}
+             transition={{ delay: 0.1 }}
           >
-            <button
+             <button
               onClick={() => openBooking(bookingType)}
-              className="group relative inline-flex text-white text-xl md:text-3xl font-light tracking-tight items-center gap-6 overflow-hidden pb-2"
+              className="bg-[#ff5a36] hover:bg-[#e04a29] text-white px-10 py-4 text-sm font-medium tracking-widest uppercase transition-colors"
             >
-              <span>Inquire Now</span>
-              <svg className="w-8 h-8 transition-transform duration-500 group-hover:translate-x-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-              </svg>
-              {/* Animated underline */}
-              <span className="absolute bottom-0 left-0 w-full h-[1px] bg-white/30 transform origin-right scale-x-100 transition-transform duration-500 group-hover:scale-x-0" />
-              <span className="absolute bottom-0 left-0 w-full h-[1px] bg-white transform origin-left scale-x-0 transition-transform duration-500 delay-100 group-hover:scale-x-100" />
+              Inquire Now
             </button>
           </motion.div>
         </div>
@@ -306,23 +309,23 @@ export function WorkspaceDetail({
       <AnimatePresence>
         {lightboxOpen && (
           <motion.div 
-            className="fixed inset-0 z-50 bg-black/95 flex flex-col justify-center items-center backdrop-blur-md"
+            className="fixed inset-0 z-50 bg-black/95 flex flex-col justify-center items-center backdrop-blur-sm"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.4 }}
+            transition={{ duration: 0.3 }}
             onClick={closeLightbox}
           >
             {/* Lightbox Header */}
-            <div className="absolute top-0 left-0 w-full p-6 md:p-12 flex justify-between items-center z-10">
+            <div className="absolute top-0 left-0 w-full p-4 md:p-8 flex justify-between items-center z-10">
               <span className="text-white/60 text-xs tracking-widest uppercase">
                 {currentImageIndex + 1} / {allImages.length}
               </span>
               <button 
                 onClick={closeLightbox}
-                className="text-white hover:text-white/70 transition-colors p-2"
+                className="text-white hover:text-[#ff5a36] transition-colors p-2"
               >
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
                   <line x1="18" y1="6" x2="6" y2="18"></line>
                   <line x1="6" y1="6" x2="18" y2="18"></line>
                 </svg>
@@ -330,7 +333,7 @@ export function WorkspaceDetail({
             </div>
 
             {/* Lightbox Image */}
-            <div className="relative w-full h-full flex items-center justify-center p-4 md:p-16">
+            <div className="relative w-full h-full flex items-center justify-center p-4 md:p-12">
               <AnimatePresence mode="wait">
                 <motion.img
                   key={currentImageIndex}
@@ -340,8 +343,8 @@ export function WorkspaceDetail({
                   initial={{ opacity: 0, scale: 0.98 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 1.02 }}
-                  transition={{ duration: 0.3 }}
-                  onClick={(e) => e.stopPropagation()} // Prevent closing when clicking image
+                  transition={{ duration: 0.2 }}
+                  onClick={(e) => e.stopPropagation()}
                 />
               </AnimatePresence>
             </div>
@@ -351,17 +354,17 @@ export function WorkspaceDetail({
               <>
                 <button 
                   onClick={prevImage}
-                  className="absolute left-4 md:left-12 top-1/2 -translate-y-1/2 text-white/50 hover:text-white p-4 transition-colors"
+                  className="absolute left-2 md:left-8 top-1/2 -translate-y-1/2 text-white/50 hover:text-white p-4 transition-colors bg-black/20 hover:bg-black/50 rounded-full"
                 >
-                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
                     <polyline points="15 18 9 12 15 6"></polyline>
                   </svg>
                 </button>
                 <button 
                   onClick={nextImage}
-                  className="absolute right-4 md:right-12 top-1/2 -translate-y-1/2 text-white/50 hover:text-white p-4 transition-colors"
+                  className="absolute right-2 md:right-8 top-1/2 -translate-y-1/2 text-white/50 hover:text-white p-4 transition-colors bg-black/20 hover:bg-black/50 rounded-full"
                 >
-                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
                     <polyline points="9 18 15 12 9 6"></polyline>
                   </svg>
                 </button>

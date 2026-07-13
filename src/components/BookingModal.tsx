@@ -340,18 +340,16 @@ export default function BookingModal() {
                         <button
                           type="submit"
                           disabled={status === 'loading'}
-                          className="group relative w-full sm:w-auto px-8 h-12 bg-brand-orange hover:bg-brand-orange-hover text-white text-sm font-medium rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-brand-orange/20 hover:-translate-y-0.5 overflow-hidden disabled:opacity-70 disabled:hover:translate-y-0 disabled:cursor-not-allowed shrink-0"
+                          className="group w-full sm:w-auto px-8 h-12 bg-brand-orange hover:bg-brand-orange-hover text-white text-sm font-medium rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-brand-orange/20 hover:-translate-y-0.5 disabled:opacity-70 disabled:hover:translate-y-0 disabled:cursor-not-allowed shrink-0 flex items-center justify-center gap-2"
                         >
-                          <div className="absolute inset-0 flex items-center justify-center">
-                            {status === 'loading' ? (
-                              <Loader2 className="w-5 h-5 animate-spin" />
-                            ) : (
-                              <div className="flex items-center gap-2">
-                                <span>Schedule My Visit</span>
-                                <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-                              </div>
-                            )}
-                          </div>
+                          {status === 'loading' ? (
+                            <Loader2 className="w-5 h-5 animate-spin" />
+                          ) : (
+                            <>
+                              <span>Schedule My Visit</span>
+                              <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+                            </>
+                          )}
                         </button>
                       </motion.div>
                     </motion.form>

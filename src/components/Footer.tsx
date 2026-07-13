@@ -10,13 +10,13 @@ export default function Footer() {
   const { openBooking } = useBooking();
 
   return (
-    <footer 
+    <footer
       className="bg-[#0C0C0C] border-t border-white/5 pt-28 pb-12 relative"
       style={{ backgroundImage: 'radial-gradient(circle at top, rgba(255,255,255,0.03) 0%, transparent 60%)' }}
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-16 mb-20">
-          
+
           {/* Brand Identity */}
           <motion.div
             className="md:col-span-12 lg:col-span-5 space-y-8"
@@ -48,14 +48,14 @@ export default function Footer() {
                 22<span className="text-brand-orange">workspace</span>
               </span>
             </Link>
-            
+
             <p className="text-zinc-400 text-[15px] leading-relaxed max-w-[280px]" style={{ fontFamily: 'var(--font-satoshi)', fontWeight: 400 }}>
               A premium, design-led business center and coworking environment designed to spark innovation, drive business growth, and connect entrepreneurs.
             </p>
 
             <div className="flex items-center gap-4 pt-1">
               {/* Instagram */}
-              <a href="#" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-zinc-400 hover:text-brand-orange hover:border-brand-orange hover:-translate-y-1 transition-all duration-300">
+              <a href="https://www.instagram.com/22workspace/" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-zinc-400 hover:text-brand-orange hover:border-brand-orange hover:-translate-y-1 transition-all duration-300">
                 <svg className="w-[18px] h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <rect x="2" y="2" width="20" height="20" rx="5" ry="5" strokeWidth="2"></rect>
                   <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" strokeWidth="2"></path>
@@ -63,7 +63,7 @@ export default function Footer() {
                 </svg>
               </a>
               {/* LinkedIn */}
-              <a href="#" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-zinc-400 hover:text-brand-orange hover:border-brand-orange hover:-translate-y-1 transition-all duration-300">
+              <a href="https://www.linkedin.com/company/22-workspace/" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-zinc-400 hover:text-brand-orange hover:border-brand-orange hover:-translate-y-1 transition-all duration-300">
                 <svg className="w-[18px] h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" strokeWidth="2"></path>
                   <rect x="2" y="9" width="4" height="12" strokeWidth="2"></rect>
@@ -71,13 +71,13 @@ export default function Footer() {
                 </svg>
               </a>
               {/* Facebook */}
-              <a href="#" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-zinc-400 hover:text-brand-orange hover:border-brand-orange hover:-translate-y-1 transition-all duration-300">
+              <a href="https://www.facebook.com/22workspace" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-zinc-400 hover:text-brand-orange hover:border-brand-orange hover:-translate-y-1 transition-all duration-300">
                 <svg className="w-[18px] h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" strokeWidth="2"></path>
                 </svg>
               </a>
               {/* Google Maps */}
-              <a href="#" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-zinc-400 hover:text-brand-orange hover:border-brand-orange hover:-translate-y-1 transition-all duration-300">
+              <a href="https://www.google.com/maps/place/22+Workspace+01/@28.6445226,77.2239642,17z/data=!3m1!4b1!4m6!3m5!1s0x390cfd3d0249ce75:0x5511e9b07e3d8d08!8m2!3d28.6445179!4d77.2265391!16s%2Fg%2F11gdw18c0m?entry=ttu&g_ep=EgoyMDI2MDcwOC4wIKXMDSoASAFQAw%3D%3D" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-zinc-400 hover:text-brand-orange hover:border-brand-orange hover:-translate-y-1 transition-all duration-300">
                 <svg className="w-[18px] h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
                   <circle cx="12" cy="10" r="3" strokeWidth="2" />
@@ -144,11 +144,11 @@ export default function Footer() {
 
             <div className="space-y-7">
               {[
-                { building: 'Corporate House', address: '1/22, Asaf Ali Road, New Delhi 110002', subtitle: 'Near New Delhi Metro Station' },
-                { building: 'Sab House', address: '3/8, Asaf Ali Road, New Delhi 110002', subtitle: 'Near Delhi Gate Metro Station' },
-                { building: 'East of Kailash Center', address: 'A-77, East of Kailash, New Delhi', subtitle: '' },
+                { building: 'Corporate House', address: '1/22, Asaf Ali Road, New Delhi 110002', subtitle: 'Near New Delhi Metro Station', link: 'https://www.google.com/maps/place/22+Workspace+01/@28.6445226,77.2239642,17z/data=!3m1!4b1!4m6!3m5!1s0x390cfd3d0249ce75:0x5511e9b07e3d8d08!8m2!3d28.6445179!4d77.2265391!16s%2Fg%2F11gdw18c0m?entry=ttu&g_ep=EgoyMDI2MDcwOC4wIKXMDSoASAFQAw%3D%3D' },
+                { building: 'Sab House', address: '3/8, Asaf Ali Road, New Delhi 110002', subtitle: 'Near Delhi Gate Metro Station', link: 'https://www.google.com/maps/search/3%2F8+Asaf+Ali+Road+New+Delhi+110002' },
+                { building: 'East of Kailash Center', address: 'A-77, East of Kailash, New Delhi', subtitle: '', link: 'https://www.google.com/maps/search/A-77+East+of+Kailash+New+Delhi' },
               ].map((loc, idx) => (
-                <div key={idx} className="group border-l-2 border-[#222] hover:border-brand-orange pl-4 transition-colors duration-300 relative">
+                <a href={loc.link} target="_blank" rel="noopener noreferrer" key={idx} className="block group border-l-2 border-[#222] hover:border-brand-orange pl-4 transition-colors duration-300 relative">
                   <div className="flex items-start gap-3">
                     <svg className="w-5 h-5 text-zinc-600 group-hover:text-brand-orange transition-colors duration-300 shrink-0 mt-[3px]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
@@ -162,7 +162,7 @@ export default function Footer() {
                       </p>
                     </div>
                   </div>
-                </div>
+                </a>
               ))}
             </div>
           </motion.div>

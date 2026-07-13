@@ -184,7 +184,7 @@ export default function Home() {
       price: "From ₹1,500 / hour",
       desc: "The perfect venue to host workshops, networking dinners, or training sessions. Accommodates up to 30 delegates with customized hospitality options.",
       specs: ["Up to 30 delegates", "Professional projection facility", "Flexible seating configs", "Catering & support options"],
-      img: "https://images.unsplash.com/photo-1511578314322-379afb476865?q=80&w=1000",
+      img: "/assets/event1.jpg",
       href: "/event",
     },
   ];
@@ -341,7 +341,7 @@ export default function Home() {
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true, amount: 0.4 }}
                 transition={{ duration: 1 }}
-                className="text-zinc-600 text-xl leading-relaxed"
+                className="text-zinc-600 text-xl leading-relaxed text-justify"
                 style={{ fontFamily: 'Geist', fontWeight: 400 }}
               >
                 <span className="block mb-5">
@@ -490,7 +490,7 @@ export default function Home() {
                     <h3 className="text-white text-xl mb-3" style={{ fontFamily: 'Geist', fontWeight: 500, lineHeight: 1.3 }}>
                       {benefit.title}
                     </h3>
-                    <p className="text-zinc-400 text-[15px] leading-relaxed">
+                    <p className="text-zinc-400 text-[15px] leading-relaxed text-justify">
                       {benefit.desc}
                     </p>
                   </div>
@@ -518,7 +518,7 @@ export default function Home() {
           >
             <span className="text-xs font-semibold uppercase tracking-widest block" style={{ fontFamily: 'var(--font-satoshi)', color: '#D9622E' }}>Where you&apos;ll find us</span>
             <h2 className="text-4xl md:text-5xl text-zinc-900" style={{ fontFamily: 'Sora', fontWeight: 600, lineHeight: 1.1 }}>Our Locations</h2>
-            <p className="text-zinc-500 text-base leading-relaxed" style={{ fontFamily: 'var(--font-satoshi)', fontWeight: 400 }}>
+            <p className="text-zinc-500 text-base leading-relaxed text-justify" style={{ fontFamily: 'var(--font-satoshi)', fontWeight: 400 }}>
               Centrally situated offices in Delhi with excellent metro connectivity — saving you and your team time every single day.
             </p>
           </motion.div>
@@ -531,7 +531,7 @@ export default function Home() {
                 addr: "1/22, Asaf Ali Road, New Delhi 110002",
                 metro: "Near New Delhi Metro Station",
                 desc: "Central Delhi address with direct metro access and a professional corporate environment.",
-                mapLink: "https://www.google.com/maps/search/1%2F22+Asaf+Ali+Road+New+Delhi+110002"
+                mapLink: "https://www.google.com/maps/place/22+Workspace+01/@28.6445226,77.2239642,17z/data=!3m1!4b1!4m6!3m5!1s0x390cfd3d0249ce75:0x5511e9b07e3d8d08!8m2!3d28.6445179!4d77.2265391!16s%2Fg%2F11gdw18c0m?entry=ttu&g_ep=EgoyMDI2MDcwOC4wIKXMDSoASAFQAw%3D%3D"
               },
               {
                 name: "Sab House",
@@ -573,7 +573,7 @@ export default function Home() {
                       {loc.metro}
                     </p>
 
-                    <p className="text-zinc-500 text-[14.5px] leading-relaxed" style={{ fontFamily: 'var(--font-satoshi)', fontWeight: 400 }}>
+                    <p className="text-zinc-500 text-[14.5px] leading-relaxed text-justify" style={{ fontFamily: 'var(--font-satoshi)', fontWeight: 400 }}>
                       {loc.desc}
                     </p>
                   </div>
@@ -630,7 +630,7 @@ export default function Home() {
             Establish a Presence Without the Overhead
           </h2>
 
-          <p className="text-zinc-400 text-[15px] md:text-lg max-w-[42rem] mx-auto leading-relaxed mb-10" style={{ fontFamily: 'var(--font-satoshi)', fontWeight: 400 }}>
+          <p className="text-zinc-400 text-[15px] md:text-lg max-w-[42rem] mx-auto leading-relaxed mb-10 text-justify" style={{ fontFamily: 'var(--font-satoshi)', fontWeight: 400 }}>
             Avail of a premier corporate mailing address, company registration, and GST representation with our Virtual Office solutions starting at minimal pricing.
           </p>
 

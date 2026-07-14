@@ -2,9 +2,30 @@ import React from "react";
 import { WorkspaceDetail } from "@/components/WorkspaceDetail";
 
 export default function MeetingRoomPage() {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Meeting Room Rental in Central Delhi",
+    "image": "https://www.22workspace.com/assets/meeting.JPG",
+    "description": "Book premium meeting rooms, boardrooms, and conference spaces in Central Delhi. Equipped with high-speed Wi-Fi, displays, and professional amenities.",
+    "brand": {
+      "@type": "Brand",
+      "name": "22Workspace"
+    },
+    "offers": {
+      "@type": "Offer",
+      "url": "https://www.22workspace.com/meeting-room",
+      "priceCurrency": "INR",
+      "price": "300",
+      "availability": "https://schema.org/InStock"
+    }
+  };
+
   return (
-    <WorkspaceDetail
-      title="Meeting Rooms"
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      <WorkspaceDetail
+        title="Rent Meeting Room in Delhi"
       categoryName="Hourly & Daily"
       valueProposition="Acoustically private, technology-enabled spaces designed for decisive moments."
       price="From ₹300 / hour"
@@ -85,5 +106,6 @@ export default function MeetingRoomPage() {
       ]}
       bookingType="Meeting Room"
     />
+    </>
   );
 }

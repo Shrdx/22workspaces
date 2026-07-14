@@ -136,8 +136,28 @@ export default function VirtualOfficePage() {
     }),
   };
 
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Virtual Office Registration in Delhi",
+    "image": "https://www.22workspace.com/co-working%20pics/co2.jpg",
+    "description": "Premium virtual office registration in Central Delhi. Get a professional business address for GST & ROC compliance with mail handling and front desk support.",
+    "brand": {
+      "@type": "Brand",
+      "name": "22Workspace"
+    },
+    "offers": {
+      "@type": "Offer",
+      "url": "https://www.22workspace.com/virtual-office",
+      "priceCurrency": "INR",
+      "price": "2000",
+      "availability": "https://schema.org/InStock"
+    }
+  };
+
   return (
     <div className={`w-full bg-[#fbfaf8] text-zinc-900 min-h-screen `}>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
 
       {/* 1. HERO */}
       <section className="relative w-full h-[85svh] min-h-[550px] bg-zinc-950 flex flex-col justify-end">
@@ -154,7 +174,7 @@ export default function VirtualOfficePage() {
           <div className="max-w-3xl">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
               <span className="block text-[#ff5a36] text-sm md:text-base font-medium tracking-widest uppercase mb-3 md:mb-4">Corporate Identity</span>
-              <h1 className="text-4xl md:text-6xl lg:text-7xl text-white tracking-tight leading-[1.05] font-medium mb-4">Virtual Office</h1>
+              <h1 className="text-4xl md:text-6xl lg:text-7xl text-white tracking-tight leading-[1.05] font-medium mb-4">Virtual Office Registration in Delhi</h1>
               <p className="text-lg md:text-xl text-white/90 font-light leading-relaxed max-w-2xl">
                 Establish a premium corporate presence at a prime Central Delhi address — with mail handling, GST &amp; company registration support, and on-demand workspace access. No physical lease required.
               </p>

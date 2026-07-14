@@ -196,8 +196,26 @@ export default function Home() {
     exit: { opacity: 0, scale: 0.95, transition: { duration: 0.15 } },
   };
 
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "CoworkingSpace",
+    "name": "22Workspace",
+    "image": "https://www.22workspace.com/assets/coworking1.jpg",
+    "url": "https://www.22workspace.com/",
+    "telephone": "+918700513200",
+    "priceRange": "₹5000-₹15000",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "1/22, Asaf Ali Road",
+      "addressLocality": "New Delhi",
+      "postalCode": "110002",
+      "addressCountry": "IN"
+    }
+  };
+
   return (
     <div className="flex flex-col w-full overflow-hidden bg-space-light">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
 
       {/* 1. Cinematic Hero Section */}
       <style suppressHydrationWarning>{`main { padding-top: 0 !important; }`}</style>
@@ -248,8 +266,8 @@ export default function Home() {
           </div>
 
           <h1 className="text-[clamp(3.5rem,7vw,7.5rem)] text-white leading-[0.95] tracking-[-0.02em] mb-8 font-serif font-normal" style={{ textShadow: "0 4px 30px rgba(0,0,0,0.3)" }}>
-            Space to work.<br />
-            <span className="italic text-brand-orange font-semibold" style={{ fontFamily: 'var(--font-sans)' }}>Room to grow.</span>
+            Premium Coworking Space<br />
+            <span className="italic text-brand-orange font-semibold" style={{ fontFamily: 'var(--font-sans)' }}>in Central Delhi.</span>
           </h1>
 
           <p className="text-white/75 text-[17px] md:text-[20px] max-w-[650px] leading-[1.6] mb-10 font-normal">
@@ -340,13 +358,13 @@ export default function Home() {
                 style={{ fontFamily: 'Geist', fontWeight: 400 }}
               >
                 <span className="block mb-5">
-                  22workspace is a premium business center designed for modern businesses, entrepreneurs, and professionals who value flexibility, convenience, and a productive work environment. We offer fully managed, plug-and-play office spaces that allow businesses of all sizes to establish, operate, and grow without the complexities of managing traditional office infrastructure.
+                  22workspace is a premium <strong className="text-zinc-900 font-semibold">coworking space in Central Delhi</strong> designed for modern businesses, entrepreneurs, and professionals who value flexibility, convenience, and a productive work environment. Located strategically at Asaf Ali Road, we offer fully managed, plug-and-play office spaces that allow businesses of all sizes to establish, operate, and grow without the complexities of managing traditional office infrastructure.
                 </span>
                 <span className="block mb-5">
-                  Our approach goes beyond simply providing a workspace. We create a professional ecosystem where businesses can focus entirely on what matters most — their growth. From thoughtfully designed offices and essential infrastructure to security, operational support, and a collaborative professional community, every aspect of 22workspace is built to make running your business simpler.
+                  Our approach goes beyond simply providing a shared workspace. We create a professional ecosystem equipped with high-speed Wi-Fi, ergonomic seating, secure access, and fully equipped meeting rooms. From thoughtfully designed private offices to operational support and a collaborative professional community, every aspect of 22workspace is built to make running your business simpler.
                 </span>
                 <span className="block mb-5">
-                  We believe in shifting businesses away from heavy capital expenditure toward a more flexible and efficient operating model. With our philosophy of <strong className="text-zinc-900 font-semibold">&ldquo;pay for what you use,&rdquo;</strong> you gain access to the workspace, infrastructure, and services your business needs without unnecessary long-term investments.
+                  Whether you need virtual office registration for GST, a dedicated desk, or a custom-built enterprise suite, we shift businesses away from heavy capital expenditure toward a more flexible operating model. With our philosophy of <strong className="text-zinc-900 font-semibold">&ldquo;pay for what you use,&rdquo;</strong> you gain access to the premium workspace your business needs without unnecessary long-term investments.
                 </span>
                 <span className="block">
                   Whether you are an independent professional, an emerging startup, or an established organization looking to expand, 22workspace provides the flexibility and support required to scale confidently. With allied legal and financial consultancy services available within our ecosystem, we aim to be more than just your workspace — we aim to be a long-term partner in your business growth.

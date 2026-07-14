@@ -2,9 +2,30 @@ import React from "react";
 import { WorkspaceDetail } from "@/components/WorkspaceDetail";
 
 export default function PrivateOfficePage() {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Private Office Space in Central Delhi",
+    "image": "https://www.22workspace.com/assets/private.jpg",
+    "description": "Rent fully furnished, managed private office spaces in Central Delhi. Perfect for growing teams and enterprises seeking premium workspace.",
+    "brand": {
+      "@type": "Brand",
+      "name": "22Workspace"
+    },
+    "offers": {
+      "@type": "Offer",
+      "url": "https://www.22workspace.com/private-office",
+      "priceCurrency": "INR",
+      "price": "7000",
+      "availability": "https://schema.org/InStock"
+    }
+  };
+
   return (
-    <WorkspaceDetail
-      title="Private Office"
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      <WorkspaceDetail
+        title="Private Office Space in Delhi"
       categoryName="Enterprise"
       valueProposition="Absolute focus and privacy. Your team's headquarters, fully managed."
       price="From ₹7,000 / desk / month"
@@ -86,5 +107,6 @@ export default function PrivateOfficePage() {
       ]}
       bookingType="Private Office"
     />
+    </>
   );
 }

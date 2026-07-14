@@ -81,8 +81,37 @@ export default function ContactPage() {
     }
   };
 
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "22Workspace",
+    "image": "https://www.22workspace.com/assets/coworking1.jpg",
+    "url": "https://www.22workspace.com/contact",
+    "telephone": "+918700513200",
+    "email": "hello@22workspace.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "1/22, Asaf Ali Road",
+      "addressLocality": "New Delhi",
+      "postalCode": "110002",
+      "addressCountry": "IN"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 28.6415,
+      "longitude": 77.2311
+    },
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      "opens": "09:00",
+      "closes": "20:00"
+    }
+  };
+
   return (
     <div className="min-h-screen pt-32 pb-20 bg-space-light">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="text-center max-w-2xl mx-auto mb-16">
           <motion.span
@@ -98,7 +127,7 @@ export default function ContactPage() {
             transition={{ delay: 0.1 }}
             className="text-4xl md:text-6xl font-bold text-zinc-900 mb-6 font-serif tracking-tight"
           >
-            Contact Us
+            Contact 22Workspace
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 10 }}

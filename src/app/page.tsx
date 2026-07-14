@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { motion, AnimatePresence, useReducedMotion, type Variants } from "framer-motion";
+import { motion, useReducedMotion, type Variants } from "framer-motion";
 import {
   Monitor,
   Users,
@@ -27,21 +27,7 @@ export default function Home() {
   const [heroTextOpacity, setHeroTextOpacity] = useState(1);
 
 
-  const slideshowImages = [
-    "/co-working%20pics/co1.jpg",
-    "/co-working%20pics/co2.jpg",
-    "/co-working%20pics/co3.jpg",
-    "/co-working%20pics/co4.jpg",
-    "/co-working%20pics/co5.JPG",
-  ];
-  const [currentSlide, setCurrentSlide] = useState(0);
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slideshowImages.length);
-    }, 6000);
-    return () => clearInterval(timer);
-  }, [slideshowImages.length]);
 
   /* Parallax + hero text fade */
   const heroBgRef = useRef<HTMLDivElement>(null);
@@ -216,25 +202,27 @@ export default function Home() {
       {/* 1. Cinematic Hero Section */}
       <style suppressHydrationWarning>{`main { padding-top: 0 !important; }`}</style>
       <section className="relative flex flex-col items-center justify-center pt-32 pb-[10vh] overflow-hidden bg-[#0f0f11]" style={{ minHeight: "100vh" }}>
-        {/* Parallax Background Slideshow */}
+        {/* Parallax Background Video */}
         <div
           ref={heroBgRef}
           className="absolute inset-0 will-change-transform z-0"
           style={{ top: "-10%", bottom: "-10%" }}
         >
-          <AnimatePresence mode="popLayout" initial={false}>
-            <motion.div
-              key={currentSlide}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 1.5, ease: "easeInOut" }}
-              className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-              style={{
-                backgroundImage: `radial-gradient(circle at 50% 40%, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.6) 100%), linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.2) 50%, rgba(15,15,17,1) 100%), url('${slideshowImages[currentSlide]}')`,
-              }}
-            />
-          </AnimatePresence>
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover"
+            src="/co-working%20pics/22workspace%20vid%20front%20page.mp4"
+          />
+          {/* Overlay gradient for text legibility */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background: "radial-gradient(circle at 50% 40%, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.6) 100%), linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.25) 50%, rgba(15,15,17,1) 100%)",
+            }}
+          />
         </div>
 
         {/* Orange Glow spotlight at the top */}

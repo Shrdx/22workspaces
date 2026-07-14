@@ -173,44 +173,53 @@ export default function Footer() {
 
         {/* Contact Info Blocks */}
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12"
+          className="flex flex-col md:flex-row items-start md:items-center justify-between gap-10 py-8 border-b border-white/5 mb-12"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
         >
-          <div className="bg-[#121212] border border-[#222] rounded-2xl p-6 flex items-center gap-5 hover:-translate-y-1 hover:border-white/10 transition-all duration-300">
-            <div className="w-12 h-12 rounded-full bg-black border border-white/5 flex items-center justify-center text-brand-orange shrink-0">
-              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+          {/* Phone */}
+          <div className="flex items-center gap-4 group">
+            <div className="text-zinc-600 group-hover:text-brand-orange transition-colors duration-300">
+              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
               </svg>
             </div>
-            <div>
-              <p className="text-[11px] uppercase tracking-[0.15em] text-zinc-500 mb-1 font-semibold">Phone</p>
-              <a href="tel:+918700513200" className="hover:text-brand-orange transition-colors text-[15px] font-medium text-white tracking-wide">+91 87005 13200</a>
+            <div className="flex flex-col">
+              <span className="text-[10px] uppercase tracking-[0.2em] text-zinc-500 mb-0.5 font-medium">Phone</span>
+              <a href="tel:+918700513200" className="text-[15px] font-medium text-white tracking-wide hover:text-brand-orange transition-colors">+91 87005 13200</a>
             </div>
           </div>
 
-          <div className="bg-[#121212] border border-[#222] rounded-2xl p-6 flex items-center gap-5 hover:-translate-y-1 hover:border-white/10 transition-all duration-300">
-            <div className="w-12 h-12 rounded-full bg-black border border-white/5 flex items-center justify-center text-brand-orange shrink-0">
-              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          {/* Divider (Desktop only) */}
+          <div className="hidden md:block w-px h-10 bg-white/10" />
+
+          {/* Email */}
+          <div className="flex items-center gap-4 group">
+            <div className="text-zinc-600 group-hover:text-brand-orange transition-colors duration-300">
+              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
               </svg>
             </div>
-            <div>
-              <p className="text-[11px] uppercase tracking-[0.15em] text-zinc-500 mb-1 font-semibold">Email Us</p>
-              <a href="mailto:info@22workspace.com" className="hover:text-brand-orange transition-colors text-[15px] font-medium text-white tracking-wide">info@22workspace.com</a>
+            <div className="flex flex-col">
+              <span className="text-[10px] uppercase tracking-[0.2em] text-zinc-500 mb-0.5 font-medium">Email Us</span>
+              <a href="mailto:info@22workspace.com" className="text-[15px] font-medium text-white tracking-wide hover:text-brand-orange transition-colors">info@22workspace.com</a>
             </div>
           </div>
 
-          <div className="bg-[#121212] border border-[#222] rounded-2xl p-6 flex items-center gap-5 hover:-translate-y-1 hover:border-white/10 transition-all duration-300">
-            <div className="w-12 h-12 rounded-full bg-black border border-white/5 flex items-center justify-center text-brand-orange shrink-0">
-              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+          {/* Divider (Desktop only) */}
+          <div className="hidden md:block w-px h-10 bg-white/10" />
+
+          {/* Working Hours */}
+          <div className="flex items-center gap-4 group">
+            <div className="text-zinc-600 group-hover:text-brand-orange transition-colors duration-300">
+              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </div>
-            <div>
-              <p className="text-[11px] uppercase tracking-[0.15em] text-zinc-500 mb-1 font-semibold">Working Hours</p>
+            <div className="flex flex-col">
+              <span className="text-[10px] uppercase tracking-[0.2em] text-zinc-500 mb-0.5 font-medium">Working Hours</span>
               <span className="text-[15px] font-medium text-white tracking-wide">Mon - Sat (9:00 AM - 7:00 PM)</span>
             </div>
           </div>

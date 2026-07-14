@@ -57,8 +57,8 @@ export default function ContactPage() {
     
     try {
       await emailjs.send(
-        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || 'service_placeholder',
-        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || 'template_placeholder',
+        'service_8akx5ec',
+        'template_mz4wljg',
         {
           name: formData.name,
           email: formData.email,
@@ -67,7 +67,7 @@ export default function ContactPage() {
           product: 'Contact Page Inquiry',
           location: 'N/A'
         },
-        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || 'public_key_placeholder'
+        'X4NZa6nOpWqm2wysj'
       );
       
       setStatus('success');

@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import localFont from "next/font/local";
 import { useBooking } from "@/components/BookingProvider";
@@ -94,9 +95,12 @@ export function WorkspaceDetail({
       
       {/* 1. Hero Section */}
       <section className="relative w-full h-[85svh] min-h-[550px] bg-zinc-950 flex flex-col justify-end">
-        <div 
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url('${mainImage}')` }}
+        <Image 
+          src={mainImage}
+          alt={title}
+          fill
+          priority
+          className="object-cover object-center"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10" />
         
@@ -205,8 +209,8 @@ export function WorkspaceDetail({
               transition={{ duration: 0.6, delay: idx * 0.1 }}
             >
               {benefit.image && (
-                <div className="w-full aspect-[16/9] mb-6 bg-zinc-100 overflow-hidden">
-                  <img src={benefit.image} alt={benefit.title} className="w-full h-full object-cover" />
+                <div className="relative w-full aspect-[16/9] mb-6 bg-zinc-100 overflow-hidden">
+                  <Image src={benefit.image} alt={benefit.title} fill className="object-cover" />
                 </div>
               )}
               <h3 className="text-xl font-medium text-zinc-900 mb-3">{benefit.title}</h3>

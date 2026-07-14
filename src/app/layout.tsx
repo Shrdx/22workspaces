@@ -5,6 +5,8 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { BookingProvider } from "@/components/BookingProvider";
 import SmoothScroll from "@/components/SmoothScroll";
+import BackToTop from "@/components/BackToTop";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 const cormorant = Cormorant_Garamond({
   variable: "--font-cormorant",
@@ -47,6 +49,8 @@ export default function RootLayout({
           <Navbar />
           <main className="flex-grow flex flex-col pt-[var(--navbar-h)]">{children}</main>
           <Footer />
+          <BackToTop />
+          <WhatsAppButton />
         </BookingProvider>
       </body>
     </html>

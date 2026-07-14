@@ -318,9 +318,16 @@ export default function Home() {
                   ))}
                 </h2>
               </div>
-              {/* User Image Placement */}
-              <div className="w-full h-64 md:h-80 bg-zinc-100 rounded-2xl overflow-hidden shadow-sm flex items-center justify-center border border-zinc-200 mt-2">
-                <span className="text-zinc-400 font-medium text-sm tracking-wide">Image Placement</span>
+              {/* Brand Video */}
+              <div className="w-full h-64 md:h-80 bg-zinc-100 rounded-2xl overflow-hidden shadow-sm flex items-center justify-center border border-zinc-200 mt-2 relative">
+                <video
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="absolute inset-0 w-full h-full object-contain"
+                  src="/co-working%20pics/upscaled-video.mp4"
+                />
               </div>
             </div>
             <div className="lg:col-span-7">
@@ -347,6 +354,39 @@ export default function Home() {
               </motion.p>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* 2.5 Clientele */}
+      <section className="py-20 bg-[#fbfaf8] border-t border-black/5 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 mb-12 flex flex-col items-center text-center">
+          <span className="text-[#ff5a36] text-xs font-semibold uppercase tracking-widest block mb-4" style={{ fontFamily: 'var(--font-satoshi)' }}>Our Clientele</span>
+          <h2 className="text-3xl md:text-4xl text-zinc-900 tracking-tight leading-tight max-w-2xl" style={{ fontFamily: 'Geist', fontWeight: 500 }}>
+            Trusted by businesses that choose to work better.
+          </h2>
+          <p className="mt-4 text-zinc-500 text-[15px] max-w-xl mx-auto leading-relaxed">
+            Join a thriving community of startups, enterprises, and established professionals who call 22workspace their operational home.
+          </p>
+        </div>
+        
+        {/* Marquee Wrapper */}
+        <div className="relative w-full flex overflow-hidden border-y border-black/5 bg-white/50 py-10">
+          {/* Gradient Edges for smooth fade effect */}
+          <div className="absolute top-0 bottom-0 left-0 w-24 md:w-48 bg-gradient-to-r from-[#fbfaf8] to-transparent z-10 pointer-events-none" />
+          <div className="absolute top-0 bottom-0 right-0 w-24 md:w-48 bg-gradient-to-l from-[#fbfaf8] to-transparent z-10 pointer-events-none" />
+
+          {/* Marquee Track using Framer Motion */}
+          <motion.div 
+            className="flex gap-12 md:gap-20 items-center w-max pl-12"
+            animate={{ x: ["0%", "-50%"] }}
+            transition={{ ease: "linear", duration: 50, repeat: Infinity }}
+          >
+            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18].map((num, idx) => (
+              <div key={idx} className="w-[100px] md:w-[140px] h-[50px] md:h-[70px] flex-shrink-0 flex items-center justify-center hover:scale-105 transition-all duration-300">
+                <img src={`/clients/c${num}.png`} alt={`Client ${num}`} className="max-w-full max-h-full object-contain" />
+              </div>
+            ))}
+          </motion.div>
         </div>
       </section>
 

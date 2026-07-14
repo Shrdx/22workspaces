@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { MapPin, Phone, Mail, ArrowRight, Loader2, CheckCircle2 } from "lucide-react";
+import emailjs from '@emailjs/browser';
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -12,15 +13,72 @@ export default function ContactPage() {
     message: "",
   });
   const [status, setStatus] = useState<'idle' | 'loading' | 'success'>('idle');
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const validateForm = () => {
+    const newErrors: Record<string, string> = {};
+
+    // Name: letters and spaces only, at least 2 characters
+    if (!formData.name.trim()) {
+      newErrors.name = "Name is required";
+    } else if (!/^[a-zA-Z\s]{2,}$/.test(formData.name.trim())) {
+      newErrors.name = "Name can only contain letters and spaces";
+    }
+
+    // Email: proper format validation
+    if (!formData.email.trim()) {
+      newErrors.email = "Email is required";
+    } else if (!/^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/.test(formData.email.trim())) {
+      newErrors.email = "Please enter a valid email address";
+    }
+
+    // Phone: 10-digit Indian number, optionally prefixed with +91 or 0
+    const digitsOnly = formData.phone.trim().replace(/[\s\-()]/g, '');
+    const phonePattern = /^(\+91|0)?[6-9]\d{9}$/;
+    if (!formData.phone.trim()) {
+      newErrors.phone = "Phone number is required";
+    } else if (!phonePattern.test(digitsOnly)) {
+      newErrors.phone = "Enter a valid 10-digit Indian mobile number";
+    }
+
+    // Message: must not be empty
+    if (!formData.message.trim()) {
+      newErrors.message = "Message is required";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!validateForm()) return;
     setStatus('loading');
-    setTimeout(() => {
+    
+    try {
+      await emailjs.send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || 'service_placeholder',
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || 'template_placeholder',
+        {
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          message: formData.message,
+          product: 'Contact Page Inquiry',
+          location: 'N/A'
+        },
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || 'public_key_placeholder'
+      );
+      
       setStatus('success');
       setFormData({ name: "", email: "", phone: "", message: "" });
+      setErrors({});
       setTimeout(() => setStatus('idle'), 3000);
-    }, 1500);
+    } catch (error) {
+      console.error("FAILED to send email", error);
+      setStatus('idle');
+      alert("Failed to send message. Please try again later.");
+    }
   };
 
   return (
@@ -138,18 +196,18 @@ export default function ContactPage() {
                 <p className="text-zinc-600">We'll get back to you as soon as possible.</p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-6" noValidate>
                 <div className="space-y-4">
                   <div>
                     <label className="block text-xs font-semibold text-zinc-700 uppercase tracking-wider mb-2">Full Name</label>
                     <input
                       type="text"
-                      required
                       placeholder="Enter your name"
-                      className="w-full h-12 px-4 rounded-xl border border-zinc-200 bg-zinc-50 focus:bg-white focus:outline-none focus:border-brand-orange focus:ring-1 focus:ring-brand-orange transition-colors"
+                      className={`w-full h-12 px-4 rounded-xl border bg-zinc-50 focus:bg-white focus:outline-none focus:ring-1 transition-colors ${errors.name ? 'border-red-400 focus:border-red-400 focus:ring-red-400' : 'border-zinc-200 focus:border-brand-orange focus:ring-brand-orange'}`}
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     />
+                    {errors.name && <p className="mt-1.5 text-xs text-red-500">{errors.name}</p>}
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -157,36 +215,36 @@ export default function ContactPage() {
                       <label className="block text-xs font-semibold text-zinc-700 uppercase tracking-wider mb-2">Email</label>
                       <input
                         type="email"
-                        required
                         placeholder="Enter your email"
-                        className="w-full h-12 px-4 rounded-xl border border-zinc-200 bg-zinc-50 focus:bg-white focus:outline-none focus:border-brand-orange focus:ring-1 focus:ring-brand-orange transition-colors"
+                        className={`w-full h-12 px-4 rounded-xl border bg-zinc-50 focus:bg-white focus:outline-none focus:ring-1 transition-colors ${errors.email ? 'border-red-400 focus:border-red-400 focus:ring-red-400' : 'border-zinc-200 focus:border-brand-orange focus:ring-brand-orange'}`}
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       />
+                      {errors.email && <p className="mt-1.5 text-xs text-red-500">{errors.email}</p>}
                     </div>
                     <div>
                       <label className="block text-xs font-semibold text-zinc-700 uppercase tracking-wider mb-2">Phone</label>
                       <input
                         type="tel"
-                        required
-                        placeholder="Enter your phone no."
-                        className="w-full h-12 px-4 rounded-xl border border-zinc-200 bg-zinc-50 focus:bg-white focus:outline-none focus:border-brand-orange focus:ring-1 focus:ring-brand-orange transition-colors"
+                        placeholder="e.g. 9876543210"
+                        className={`w-full h-12 px-4 rounded-xl border bg-zinc-50 focus:bg-white focus:outline-none focus:ring-1 transition-colors ${errors.phone ? 'border-red-400 focus:border-red-400 focus:ring-red-400' : 'border-zinc-200 focus:border-brand-orange focus:ring-brand-orange'}`}
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       />
+                      {errors.phone && <p className="mt-1.5 text-xs text-red-500">{errors.phone}</p>}
                     </div>
                   </div>
 
                   <div>
                     <label className="block text-xs font-semibold text-zinc-700 uppercase tracking-wider mb-2">Message</label>
                     <textarea
-                      required
                       rows={4}
                       placeholder="How can we help you?"
-                      className="w-full px-4 py-3 rounded-xl border border-zinc-200 bg-zinc-50 focus:bg-white focus:outline-none focus:border-brand-orange focus:ring-1 focus:ring-brand-orange transition-colors resize-none"
+                      className={`w-full px-4 py-3 rounded-xl border bg-zinc-50 focus:bg-white focus:outline-none focus:ring-1 transition-colors resize-none ${errors.message ? 'border-red-400 focus:border-red-400 focus:ring-red-400' : 'border-zinc-200 focus:border-brand-orange focus:ring-brand-orange'}`}
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     />
+                    {errors.message && <p className="mt-1.5 text-xs text-red-500">{errors.message}</p>}
                   </div>
                 </div>
 

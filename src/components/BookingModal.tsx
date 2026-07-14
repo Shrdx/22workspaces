@@ -6,6 +6,7 @@ import { motion, AnimatePresence, type Variants } from "framer-motion";
 import {
   X, ArrowRight, CheckCircle2, ChevronDown, Loader2
 } from "lucide-react";
+import emailjs from '@emailjs/browser';
 
 // Custom Dropdown Component
 const CustomDropdown = ({ value, onChange, options, placeholder, label }: any) => {
@@ -99,20 +100,55 @@ export default function BookingModal() {
 
   const validateForm = () => {
     const newErrors: Record<string, string> = {};
-    if (!formData.name.trim()) newErrors.name = "Name is required";
-    if (!formData.email.trim() || !/^\S+@\S+\.\S+$/.test(formData.email)) newErrors.email = "Valid email is required";
-    if (!formData.phone.trim()) newErrors.phone = "Phone number is required";
+
+    // Name: letters and spaces only, at least 2 characters
+    if (!formData.name.trim()) {
+      newErrors.name = "Name is required";
+    } else if (!/^[a-zA-Z\s]{2,}$/.test(formData.name.trim())) {
+      newErrors.name = "Name can only contain letters and spaces (min 2 characters)";
+    }
+
+    // Email: proper format validation
+    if (!formData.email.trim()) {
+      newErrors.email = "Email is required";
+    } else if (!/^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/.test(formData.email.trim())) {
+      newErrors.email = "Please enter a valid email address";
+    }
+
+    // Phone: 10-digit Indian number, optionally prefixed with +91 or 0
+    const digitsOnly = formData.phone.trim().replace(/[\s\-()]/g, '');
+    const phonePattern = /^(\+91|0)?[6-9]\d{9}$/;
+    if (!formData.phone.trim()) {
+      newErrors.phone = "Phone number is required";
+    } else if (!phonePattern.test(digitsOnly)) {
+      newErrors.phone = "Enter a valid 10-digit Indian mobile number";
+    }
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validateForm()) return;
 
     setStatus('loading');
-    // Simulate API request
-    setTimeout(() => {
+    
+    try {
+      await emailjs.send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || 'service_placeholder',
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || 'template_placeholder',
+        {
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          location: formData.location,
+          product: formData.product,
+          message: formData.message,
+        },
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || 'public_key_placeholder'
+      );
+      
       setStatus('success');
       setTimeout(() => {
         closeBooking();
@@ -125,7 +161,11 @@ export default function BookingModal() {
           message: "",
         });
       }, 2500);
-    }, 1500);
+    } catch (error) {
+      console.error("FAILED to send email", error);
+      setStatus('idle');
+      alert("Failed to send message. Please try again later.");
+    }
   };
 
   const locationOptions = [

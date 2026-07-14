@@ -266,8 +266,8 @@ export default function Home() {
           </div>
 
           <h1 className="text-[clamp(3.5rem,7vw,7.5rem)] text-white leading-[0.95] tracking-[-0.02em] mb-8 font-serif font-normal" style={{ textShadow: "0 4px 30px rgba(0,0,0,0.3)" }}>
-            Premium Coworking Space<br />
-            <span className="italic text-brand-orange font-semibold" style={{ fontFamily: 'var(--font-sans)' }}>in Central Delhi.</span>
+            Space to work.<br />
+            <span className="italic text-brand-orange font-semibold" style={{ fontFamily: 'var(--font-sans)' }}>Room to grow.</span>
           </h1>
 
           <p className="text-white/75 text-[17px] md:text-[20px] max-w-[650px] leading-[1.6] mb-10 font-normal">

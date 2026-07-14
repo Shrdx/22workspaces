@@ -422,7 +422,7 @@ export default function Home() {
             <h2 className="text-4xl md:text-6xl text-zinc-900" style={{ fontFamily: 'var(--font-satoshi)', fontWeight: 600, lineHeight: 1.08 }}>Premium Workspaces</h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-8">
             {workspaces.map((item, i) => (
               <motion.div
                 key={item.id}
@@ -430,7 +430,11 @@ export default function Home() {
                 whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.7, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="h-full"
+                className={`h-full md:col-span-2 lg:col-span-2 ${
+                  i === 3 ? "lg:col-start-2" : ""
+                } ${
+                  i === 4 ? "md:col-start-2 lg:col-start-auto" : ""
+                }`}
               >
                 <Link href={item.href} className="block group h-full">
                   <div className="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 border border-black/5 h-full flex flex-col">

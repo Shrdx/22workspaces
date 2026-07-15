@@ -173,7 +173,7 @@ export default function ContactPage() {
                     <MapPin className="w-5 h-5 text-brand-orange" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-zinc-900">East of Kailash Center</h4>
+                    <h4 className="font-semibold text-zinc-900">South Delhi</h4>
                     <p className="text-zinc-600 mt-1">A-77, East of Kailash, New Delhi</p>
                   </div>
                 </div>

@@ -591,7 +591,7 @@ export default function Home() {
                 mapLink: "https://www.google.com/maps/search/3%2F8+Asaf+Ali+Road+New+Delhi+110002"
               },
               {
-                name: "East of Kailash Center",
+                name: "South Delhi",
                 addr: "A-77, East of Kailash, New Delhi",
                 metro: "South Delhi District",
                 desc: "A boutique business center serving South Delhi's growing community of founders and professionals.",

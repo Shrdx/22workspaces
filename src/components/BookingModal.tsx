@@ -171,7 +171,7 @@ export default function BookingModal() {
   const locationOptions = [
     { value: "Corporate House, Asaf Ali Road", label: "Corporate House (Central Delhi)" },
     { value: "Sab House, Asaf Ali Road", label: "Sab House (Central Delhi)" },
-    { value: "East of Kailash, New Delhi", label: "East of Kailash (South Delhi)" },
+    { value: "South Delhi, New Delhi", label: "South Delhi" },
   ];
 
   const productOptions = [

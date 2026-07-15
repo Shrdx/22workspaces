@@ -17,7 +17,7 @@ export default function AboutPage() {
 
   return (
     <div className={`w-full bg-[#faf9f6] text-[#1c1d1f] min-h-screen pt-24 pb-0 overflow-hidden ${geist.className}`}>
-      
+
       {/* 1. Editorial Hero */}
       <section className="max-w-[1440px] mx-auto px-6 md:px-12 pt-4 md:pt-10 mb-24 md:mb-32">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
@@ -80,7 +80,7 @@ export default function AboutPage() {
             transition={{ duration: 0.8 }}
             className="lg:col-span-5 relative h-[400px] md:h-[500px] w-full"
           >
-             <Image
+            <Image
               src="/co-working pics/co2.jpg"
               alt="Workspace environment"
               fill
@@ -161,7 +161,7 @@ export default function AboutPage() {
                 { num: "03", title: "Professional Community", desc: "The right environment creates opportunities for meaningful professional relationships, collaboration, and shared progress." },
                 { num: "04", title: "Long-Term Thinking", desc: "Our approach is built around creating lasting value for the businesses and professionals who work within our ecosystem." }
               ].map((principle, idx) => (
-                <motion.div 
+                <motion.div
                   key={idx}
                   className="group py-8 border-b border-black/10 flex flex-col md:flex-row md:items-start gap-4 md:gap-8 transition-colors duration-300 hover:bg-black/[0.02]"
                   initial={{ opacity: 0, y: 20 }}
@@ -204,13 +204,13 @@ export default function AboutPage() {
             {
               name: "Sanjay Gupta",
               role: "Founder and Managing Director",
-              img: "/Team/sanjay1.png",
+              img: "/Team/sanjay.png",
               bio: "With over four decades of extensive experience in the commercial real estate industry, Sanjay is the visionary driving force behind 22workspace. His leadership and strategic foresight ensure exceptional service delivery, securing optimal results and high-value transactions for all premium clients."
             },
             {
               name: "Kushagra Gupta",
               role: "Executive Director",
-              img: "/Team/kushagra1.png",
+              img: "/Team/kushagra.png",
               bio: "Kushagra is a dedicated professional committed to transforming the modern workspace experience. Focusing on operational excellence and tailored commercial solutions, he ensures seamless execution while contributing to sustained business growth and long-term client success."
             },
             {
@@ -265,13 +265,13 @@ export default function AboutPage() {
               </div>
             </motion.div>
             <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="lg:col-span-5 lg:col-start-8 relative h-[350px] md:h-[450px] w-full"
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="lg:col-span-5 lg:col-start-8 relative h-[350px] md:h-[450px] w-full"
             >
-                <Image src="/co-working pics/co4.jpg" alt="Future workspace" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 40vw" />
+              <Image src="/co-working pics/co4.jpg" alt="Future workspace" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 40vw" />
             </motion.div>
           </div>
         </div>
@@ -280,36 +280,36 @@ export default function AboutPage() {
       {/* 8. Premium Conversion Section */}
       <section className="py-32 md:py-40 bg-[#1c1d1f] text-white w-full text-center">
         <div className="max-w-[1440px] mx-auto px-6 md:px-12 flex flex-col items-center">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.5 }}
-              transition={{ duration: 0.8 }}
-              className="max-w-4xl"
-            >
-              <h2 className="text-4xl md:text-5xl lg:text-6xl tracking-tight leading-[1.1] mb-8" style={{ fontFamily: 'var(--font-serif)', fontWeight: 400 }}>
-                We take care of the space, <span className="italic text-zinc-400">you focus on the business.</span>
-              </h2>
-              <p className="text-zinc-400 text-[17px] md:text-xl leading-relaxed mb-12 max-w-2xl mx-auto text-justify" style={{ fontFamily: 'Geist', fontWeight: 400 }}>
-                Join a thoughtfully designed ecosystem built for long-term growth and operational clarity.
-              </p>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-                  <button
-                    onClick={() => openBooking()}
-                    className="bg-brand-orange text-white px-8 py-3.5 text-[15px] font-medium hover:bg-brand-orange-hover transition-colors duration-300 w-full sm:w-auto"
-                    style={{ fontFamily: 'var(--font-satoshi)' }}
-                  >
-                    Book a Tour
-                  </button>
-                  <Link
-                    href="/"
-                    className="text-white px-8 py-3.5 text-[15px] font-medium border border-white/20 hover:border-white transition-colors duration-300 w-full sm:w-auto"
-                    style={{ fontFamily: 'var(--font-satoshi)' }}
-                  >
-                    Explore Workspaces
-                  </Link>
-              </div>
-            </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.5 }}
+            transition={{ duration: 0.8 }}
+            className="max-w-4xl"
+          >
+            <h2 className="text-4xl md:text-5xl lg:text-6xl tracking-tight leading-[1.1] mb-8" style={{ fontFamily: 'var(--font-serif)', fontWeight: 400 }}>
+              We take care of the space, <span className="italic text-zinc-400">you focus on the business.</span>
+            </h2>
+            <p className="text-zinc-400 text-[17px] md:text-xl leading-relaxed mb-12 max-w-2xl mx-auto text-justify" style={{ fontFamily: 'Geist', fontWeight: 400 }}>
+              Join a thoughtfully designed ecosystem built for long-term growth and operational clarity.
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+              <button
+                onClick={() => openBooking()}
+                className="bg-brand-orange text-white px-8 py-3.5 text-[15px] font-medium hover:bg-brand-orange-hover transition-colors duration-300 w-full sm:w-auto"
+                style={{ fontFamily: 'var(--font-satoshi)' }}
+              >
+                Book a Tour
+              </button>
+              <Link
+                href="/"
+                className="text-white px-8 py-3.5 text-[15px] font-medium border border-white/20 hover:border-white transition-colors duration-300 w-full sm:w-auto"
+                style={{ fontFamily: 'var(--font-satoshi)' }}
+              >
+                Explore Workspaces
+              </Link>
+            </div>
+          </motion.div>
         </div>
       </section>
 

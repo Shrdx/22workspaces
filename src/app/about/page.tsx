@@ -210,7 +210,7 @@ export default function AboutPage() {
             {
               name: "Kushagra Gupta",
               role: "Executive Director",
-              img: "/Team/kushagra_unified.png",
+              img: "/Team/kushagra.png",
               bio: "Kushagra is a dedicated professional committed to transforming the modern workspace experience. Focusing on operational excellence and tailored commercial solutions, he ensures seamless execution while contributing to sustained business growth and long-term client success."
             },
             {

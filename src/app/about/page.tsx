@@ -202,16 +202,16 @@ export default function AboutPage() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-12">
           {[
             {
-              name: "Sanjay Gupta",
-              role: "Founder and Managing Director",
-              img: "/Team/sanjay_unified.png",
-              bio: "With over four decades of extensive experience in the commercial real estate industry, Sanjay is the visionary driving force behind 22workspace. His leadership and strategic foresight ensure exceptional service delivery, securing optimal results and high-value transactions for all premium clients."
-            },
-            {
               name: "Kushagra Gupta",
               role: "Executive Director",
               img: "/Team/kushagra.png",
               bio: "Kushagra is a dedicated professional committed to transforming the modern workspace experience. Focusing on operational excellence and tailored commercial solutions, he ensures seamless execution while contributing to sustained business growth and long-term client success."
+            },
+            {
+              name: "Sanjay Gupta",
+              role: "Founder and Managing Director",
+              img: "/Team/sanjay_unified.png",
+              bio: "With over four decades of extensive experience in the commercial real estate industry, Sanjay is the visionary driving force behind 22workspace. His leadership and strategic foresight ensure exceptional service delivery, securing optimal results and high-value transactions for all premium clients."
             },
             {
               name: "Kashish Gupta",
@@ -228,7 +228,7 @@ export default function AboutPage() {
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.8, delay: idx * 0.15 }}
             >
-              <div className="aspect-[3/4] w-full relative mb-6 bg-zinc-100 overflow-hidden">
+              <div className="aspect-[3/4] w-full relative mb-6 bg-white overflow-hidden">
                 <Image src={person.img} alt={person.name} fill className="object-cover object-top" sizes="(max-width: 768px) 100vw, 33vw" />
               </div>
               <h3 className="text-2xl md:text-3xl text-zinc-900 tracking-tight mb-2" style={{ fontFamily: 'var(--font-serif)', fontWeight: 400 }}>{person.name}</h3>

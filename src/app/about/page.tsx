@@ -18,7 +18,7 @@ export default function AboutPage() {
   return (
     <div className={`w-full bg-[#faf9f6] text-[#1c1d1f] min-h-screen pt-24 pb-0 overflow-hidden ${geist.className}`}>
 
-      {/* 1. Editorial Hero */}
+
       <section className="max-w-[1440px] mx-auto px-6 md:px-12 pt-4 md:pt-10 mb-24 md:mb-32">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           <motion.div
@@ -202,21 +202,21 @@ export default function AboutPage() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-12">
           {[
             {
-              name: "Kushagra Gupta",
-              role: "Executive Director",
-              img: "/Team/kushagra.png",
-              bio: "Kushagra is a dedicated professional committed to transforming the modern workspace experience. Focusing on operational excellence and tailored commercial solutions, he ensures seamless execution while contributing to sustained business growth and long-term client success."
-            },
-            {
               name: "Sanjay Gupta",
               role: "Founder and Managing Director",
-              img: "/Team/sanjay_unified.png",
+              img: "/Team/SG.png",
               bio: "With over four decades of extensive experience in the commercial real estate industry, Sanjay is the visionary driving force behind 22workspace. His leadership and strategic foresight ensure exceptional service delivery, securing optimal results and high-value transactions for all premium clients."
+            },
+            {
+              name: "Kushagra Gupta",
+              role: "Executive Director",
+              img: "/Team/kG2.png",
+              bio: "Kushagra is a dedicated professional committed to transforming the modern workspace experience. Focusing on operational excellence and tailored commercial solutions, he ensures seamless execution while contributing to sustained business growth and long-term client success."
             },
             {
               name: "Kashish Gupta",
               role: "Director of Operations",
-              img: "/Team/kashish_unified.png",
+              img: "/Team/KaG.jpg",
               bio: "Focused on delivering outstanding end-to-end results, Kashish builds long-lasting relationships based on transparency and reliability. Her proactive leadership and client-first approach ensure that every portfolio is managed with precision, driving the expansion of 22workspace's footprint."
             }
           ].map((person, idx) => (
